@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev
+  jackson:
+    default-property-inclusion: non_empty
+  thymeleaf:
+    mode: HTML5
+
+business:
+  imageHost: http://localhost:8080
