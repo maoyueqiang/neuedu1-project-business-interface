@@ -5,6 +5,20 @@ spring:
     default-property-inclusion: non_empty
   thymeleaf:
     mode: HTML5
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1000MB
 
 business:
-  imageHost: http://localhost:8080
+  imageHost: http://localhost:8888
+
+#图片上传本地地址
+img:
+  local:
+    path: F:\\upload
+
+qiniu:
+  accessKey: idBXydLylnmiqj2PmHDdWdKWla4Eol5iAEdyCPGU
+  secretKey: uroIRZJt34UG4FoF0WOUiUSNftpSL3uDl8U0KI-f
+  bucket: filestored

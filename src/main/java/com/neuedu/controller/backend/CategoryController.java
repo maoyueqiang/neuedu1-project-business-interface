@@ -1,9 +1,7 @@
 package com.neuedu.controller.backend;
 
 
-import com.neuedu.common.Const;
 import com.neuedu.common.ServerResponse;
-import com.neuedu.pojo.UserInfo;
 import com.neuedu.service.ICategoryService;
 import com.neuedu.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +24,6 @@ public class CategoryController {
      */
     @RequestMapping(value = "get_category.do")
     public ServerResponse get_category(HttpSession session,Integer categoryId){
-        //判断用户是否登录
-        UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
-
-        //判断用户权限
-        if(userInfo.getRole()!=Const.RoleEnum.ROLE_ADMIN.getCode()){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NO_PRIVILEGE.getCode(),Const.ResponseCodeEnum.NO_PRIVILEGE.getDesc());
-        }
 
         return categoryService.get_category(categoryId);
 
@@ -47,16 +35,7 @@ public class CategoryController {
      */
     @RequestMapping(value = "get_deep_category.do")
     public ServerResponse get_deep_category(HttpSession session,Integer categoryId){
-        //判断用户是否登录
-        UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
 
-        //判断用户权限
-        if(userInfo.getRole()!=Const.RoleEnum.ROLE_ADMIN.getCode()){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NO_PRIVILEGE.getCode(),Const.ResponseCodeEnum.NO_PRIVILEGE.getDesc());
-        }
 
         return categoryService.get_deep_category(categoryId);
 

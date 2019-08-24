@@ -31,3 +31,8 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params: countSql
+
+mvc:
+  static-path-pattern: /**
+resources:
+  static-locations: classpath\:/META-INF/resources/,classpath\:/resources/,classpath\:/static/,classpath\:/public/,file\:F:/qrcode/

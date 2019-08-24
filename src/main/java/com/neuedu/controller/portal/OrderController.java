@@ -32,9 +32,7 @@ public class OrderController {
     @RequestMapping("create.do")
     public ServerResponse createOrder(HttpSession session,Integer shippingId){
         UserInfo userInfo = (UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail("需要登录");
-        }
+
 
         return orderService.createOrder(userInfo.getId(),shippingId);
     }
@@ -45,9 +43,6 @@ public class OrderController {
     @RequestMapping("cancel.do")
     public ServerResponse cancelOrder(HttpSession session,Long orderNo){
         UserInfo userInfo = (UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail("需要登录");
-        }
 
         return orderService.cancelOrder(userInfo.getId(),orderNo);
     }
@@ -59,9 +54,7 @@ public class OrderController {
     @RequestMapping("get_order_cart_product.do")
     public ServerResponse get_order_cart_product(HttpSession session){
         UserInfo userInfo = (UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail("需要登录");
-        }
+
 
         return orderService.get_order_cart_product(userInfo.getId());
     }
@@ -74,9 +67,7 @@ public class OrderController {
                                @RequestParam(required = false,defaultValue = "1") Integer pageNum,
                                @RequestParam(required = false,defaultValue = "10") Integer pageSize){
         UserInfo userInfo = (UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail("需要登录");
-        }
+
 
         return orderService.list(userInfo.getId(),pageNum,pageSize);
     }
@@ -87,9 +78,7 @@ public class OrderController {
     @RequestMapping("detail.do")
     public ServerResponse detail(HttpSession session,Long orderNo){
         UserInfo userInfo = (UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail("需要登录");
-        }
+
 
         return orderService.detail(orderNo);
     }
@@ -101,9 +90,7 @@ public class OrderController {
     public ServerResponse pay(HttpSession session,
                                    @PathVariable("orderNo") Long orderNo){
         UserInfo userInfo = (UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail("需要登录");
-        }
+
 
         return orderService.pay(userInfo.getId(),orderNo);
     }

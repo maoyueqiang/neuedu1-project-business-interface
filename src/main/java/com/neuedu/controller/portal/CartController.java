@@ -26,11 +26,9 @@ public class CartController {
      */
     @RequestMapping("add.do")
     public ServerResponse add(HttpSession session,Integer productId, Integer count){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
         return cartService.add(userInfo.getId(),productId,count);
     }
 
@@ -41,11 +39,9 @@ public class CartController {
      */
     @RequestMapping("list.do")
     public ServerResponse list(HttpSession session){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
         return cartService.list(userInfo.getId());
     }
 
@@ -55,11 +51,9 @@ public class CartController {
      */
     @RequestMapping("update.do")
     public ServerResponse update(HttpSession session,Integer productId, Integer count){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
         return cartService.update(userInfo.getId(),productId,count);
     }
 
@@ -70,11 +64,9 @@ public class CartController {
      */
     @RequestMapping("delete_product.do")
     public ServerResponse delete_product(HttpSession session,String productIds){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
         return cartService.delete(userInfo.getId(),productIds);
     }
 
@@ -84,11 +76,9 @@ public class CartController {
      */
     @RequestMapping("select.do")
     public ServerResponse select(HttpSession session,Integer productId){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
         return cartService.select(userInfo.getId(),productId,Const.CartCheckedEnum.PRODUCT_CHECKED.getCode());
     }
 
@@ -98,11 +88,9 @@ public class CartController {
      */
     @RequestMapping("unselect.do")
     public ServerResponse unselect(HttpSession session,Integer productId){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
         return cartService.select(userInfo.getId(),productId,Const.CartCheckedEnum.PRODUCT_UNCHECKED.getCode());
     }
 
@@ -112,11 +100,9 @@ public class CartController {
      */
     @RequestMapping("select_all.do")
     public ServerResponse select_all(HttpSession session){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
         return cartService.select(userInfo.getId(),null,Const.CartCheckedEnum.PRODUCT_CHECKED.getCode());
     }
 
@@ -126,11 +112,9 @@ public class CartController {
      */
     @RequestMapping("unselect_all.do")
     public ServerResponse unselect_all(HttpSession session){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
         return cartService.select(userInfo.getId(),null,Const.CartCheckedEnum.PRODUCT_UNCHECKED.getCode());
     }
 
@@ -139,11 +123,9 @@ public class CartController {
      */
     @RequestMapping("get_cart_product_count.do")
     public ServerResponse get_cart_product_count(HttpSession session){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
         return cartService.get_cart_product_count(userInfo.getId());
     }
 

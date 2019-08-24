@@ -5,7 +5,6 @@ import com.neuedu.common.ServerResponse;
 import com.neuedu.pojo.Shipping;
 import com.neuedu.pojo.UserInfo;
 import com.neuedu.service.IAddressService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,11 +23,9 @@ public class AddressController {
      */
     @RequestMapping("add.do")
     public ServerResponse add(HttpSession session, Shipping shipping){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
 
         return addressService.add(userInfo.getId(),shipping);
     }
@@ -38,11 +35,9 @@ public class AddressController {
      */
     @RequestMapping("del.do")
     public ServerResponse del(HttpSession session, Integer shippingId){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
 
         return addressService.del(userInfo.getId(),shippingId);
     }
@@ -52,11 +47,9 @@ public class AddressController {
      */
     @RequestMapping("update.do")
     public ServerResponse update(HttpSession session, Shipping shipping){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
 
         shipping.setUserId(userInfo.getId());
         return addressService.update(shipping);
@@ -67,11 +60,9 @@ public class AddressController {
      */
     @RequestMapping("select.do")
     public ServerResponse select(HttpSession session, Integer shippingId){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
 
         return addressService.select(shippingId);
     }
@@ -83,11 +74,9 @@ public class AddressController {
     public ServerResponse selectAll(HttpSession session,
                                     @RequestParam(required = false,defaultValue = "1")Integer pageNum,
                                     @RequestParam(required = false,defaultValue = "10")Integer pageSize){
-        //判断用户是否登录
+
         UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
-        if(userInfo==null){
-            return ServerResponse.createServerResponseByFail(Const.ResponseCodeEnum.NEED_LOGIN.getCode(),Const.ResponseCodeEnum.NEED_LOGIN.getDesc());
-        }
+
 
         return addressService.selectAll(pageNum,pageSize);
     }

@@ -579,7 +579,7 @@ public class OrderServiceImpl implements IOrderService{
                 .setSubject(subject).setTotalAmount(totalAmount).setOutTradeNo(outTradeNo)
                 .setUndiscountableAmount(undiscountableAmount).setSellerId(sellerId).setBody(body)
                 .setOperatorId(operatorId).setStoreId(storeId).setExtendParams(extendParams)
-                .setTimeoutExpress(timeoutExpress).setNotifyUrl("http://4aa6uq.natappfree.cc/order/callback.do")//支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置
+                .setTimeoutExpress(timeoutExpress).setNotifyUrl("http://ht4arv.natappfree.cc/order/callback.do")//支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置
                 .setGoodsDetailList(goodsDetailList);
 
         AlipayF2FPrecreateResult result = tradeService.tradePrecreate(builder);
@@ -599,7 +599,7 @@ public class OrderServiceImpl implements IOrderService{
                 //引入谷歌的二维码
                 ZxingUtils.getQRCodeImge(response.getQrCode(), 256, filePath);
 
-                PayVO payVO = new PayVO(order.getOrderNo(),imageHost+"qr-"+response.getOutTradeNo()+".png");
+                PayVO payVO = new PayVO(order.getOrderNo(),imageHost+"/upload/"+"qr-"+response.getOutTradeNo()+".png");
                 return ServerResponse.createServerResponseBySuccess(payVO);
 
             case FAILED:
