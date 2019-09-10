@@ -3,8 +3,6 @@ package com.neuedu.service;
 import com.neuedu.common.ServerResponse;
 import com.neuedu.pojo.Product;
 
-import javax.servlet.http.HttpSession;
-
 public interface IProductService {
 
     /**
@@ -45,5 +43,18 @@ public interface IProductService {
     ServerResponse list_portal(Integer categoryId, String keyword,
                         Integer pageNum,Integer pageSize,String orderBy);
 
+    /**
+     * 前台搜索轮播商品
+     */
+    ServerResponse bannerlist();
 
+    /**
+     * 前台搜索热卖商品
+     */
+    ServerResponse hotlist();
+
+    /**
+     * 前台搜索新品
+     */
+    ServerResponse newlist();
 }

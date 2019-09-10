@@ -20,7 +20,6 @@ import com.neuedu.utils.PropertiesUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Set;
 
@@ -259,6 +258,33 @@ public class ProductServiceImpl implements IProductService{
 
         //返回
         return ServerResponse.createServerResponseBySuccess(pageInfo);
+    }
+
+    @Override
+    public ServerResponse bannerlist() {
+        List<Product> productList=productMapper.bannerlist();
+        if(productList==null||productList.equals("")){
+            return ServerResponse.createServerResponseByFail("无轮播产品");
+        }
+        return ServerResponse.createServerResponseBySuccess(productList);
+    }
+
+    @Override
+    public ServerResponse hotlist() {
+        List<Product> productList=productMapper.hotlist();
+        if(productList==null||productList.equals("")){
+            return ServerResponse.createServerResponseByFail("无热卖产品");
+        }
+        return ServerResponse.createServerResponseBySuccess(productList);
+    }
+
+    @Override
+    public ServerResponse newlist() {
+        List<Product> productList=productMapper.newlist();
+        if(productList==null||productList.equals("")){
+            return ServerResponse.createServerResponseByFail("无新品");
+        }
+        return ServerResponse.createServerResponseBySuccess(productList);
     }
 
     private ProductDetailVO assembleProductDetailVO(Product product){

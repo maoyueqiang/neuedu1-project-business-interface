@@ -7,11 +7,13 @@ import com.neuedu.service.ICartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/cart/")
+@CrossOrigin
 public class CartController {
 
     @Autowired

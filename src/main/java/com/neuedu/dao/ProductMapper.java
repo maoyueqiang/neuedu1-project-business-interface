@@ -2,7 +2,6 @@ package com.neuedu.dao;
 
 import com.neuedu.pojo.Product;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Set;
@@ -61,4 +60,21 @@ public interface ProductMapper {
     List<Product> searchProduct(@Param("integerSet") Set<Integer> integerSet,
                                 @Param("keyword") String keyword,
                                 @Param("orderBy") String orderBy);
+
+
+    /**
+     * 前台搜索轮播商品
+     */
+    List<Product> bannerlist();
+
+    /**
+     * 前台搜索热卖商品
+     */
+    List<Product> hotlist();
+
+    /**
+     * 前台搜索新品
+     */
+    List<Product> newlist();
+
 }

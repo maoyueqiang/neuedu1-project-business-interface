@@ -579,7 +579,10 @@ public class OrderServiceImpl implements IOrderService{
                 .setSubject(subject).setTotalAmount(totalAmount).setOutTradeNo(outTradeNo)
                 .setUndiscountableAmount(undiscountableAmount).setSellerId(sellerId).setBody(body)
                 .setOperatorId(operatorId).setStoreId(storeId).setExtendParams(extendParams)
-                .setTimeoutExpress(timeoutExpress).setNotifyUrl("http://ht4arv.natappfree.cc/order/callback.do")//支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置
+                //改为真实服务器
+                .setTimeoutExpress(timeoutExpress).setNotifyUrl("http://47.98.37.35:8888/order/callback.do")//支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置
+                //使用内网穿透
+                // .setTimeoutExpress(timeoutExpress).setNotifyUrl("http://ht4arv.natappfree.cc/order/callback.do")//支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置
                 .setGoodsDetailList(goodsDetailList);
 
         AlipayF2FPrecreateResult result = tradeService.tradePrecreate(builder);
@@ -593,7 +596,7 @@ public class OrderServiceImpl implements IOrderService{
                 System.out.println(response);
 
                 // 需要修改为运行机器上的路径
-                String filePath = String.format("f:/qrcode/qr-%s.png",
+                String filePath = String.format("/neuedu/qrcode/qr-%s.png",
                         response.getOutTradeNo());
                 log.info("filePath:" + filePath);
                 //引入谷歌的二维码

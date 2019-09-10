@@ -1,4 +1,4 @@
-package com.neuedu.controller.backend;
+package com.neuedu.controller.portal;
 
 
 import com.neuedu.common.ServerResponse;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping(value = "/manage/category/")
+@RequestMapping(value = "/category/")
 public class CategoryController {
 
     @Autowired

@@ -9,10 +9,7 @@ import com.neuedu.common.ServerResponse;
 import com.neuedu.pojo.UserInfo;
 import com.neuedu.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,6 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/order/")
+@CrossOrigin
 public class OrderController {
 
     @Autowired

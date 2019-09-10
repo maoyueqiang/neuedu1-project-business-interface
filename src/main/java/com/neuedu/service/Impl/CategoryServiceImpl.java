@@ -30,9 +30,11 @@ public class CategoryServiceImpl implements ICategoryService{
         }
 
         //根据categoeyId查询类别
-        Category category=categoryMapper.selectByPrimaryKey(categoryId);
-        if(category==null){
-            return ServerResponse.createServerResponseByFail("查询的类别不存在");
+        if(categoryId!=0){
+            Category category = categoryMapper.selectByPrimaryKey(categoryId);
+            if (category == null) {
+                return ServerResponse.createServerResponseByFail("查询的类别不存在");
+            }
         }
 
         //查询子类别
