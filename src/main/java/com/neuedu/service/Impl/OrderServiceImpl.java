@@ -178,7 +178,7 @@ public class OrderServiceImpl implements IOrderService{
     }
 
     /**
-     * 分页查询订单列表
+     * 分页查询全部订单列表
      */
     @Override
     public ServerResponse list(Integer userId,Integer pageNum,Integer pageSize) {
@@ -196,6 +196,36 @@ public class OrderServiceImpl implements IOrderService{
             orderList = orderMapper.findOrderByUserid(userId);
         }
         //step2:查询订单列表
+        if(orderList==null||orderList.size()==0){
+            return  ServerResponse.createServerResponseByFail("未查询到订单");
+        }
+
+        //step3:转换为OrderVO
+        List<OrderVO> orderVOList = Lists.newArrayList();
+        for(Order order:orderList){
+            List<OrderItem> orderItemList = orderItemMapper.findOrderItemsByOrderno(order.getOrderNo());
+            OrderVO orderVO = assmbleOrderVO(order,orderItemList,order.getShippingId());
+            orderVOList.add(orderVO);
+        }
+
+        //step3:返回结果
+        PageInfo pageInfo = new PageInfo(page);
+        pageInfo.setList(orderVOList);
+        return ServerResponse.createServerResponseBySuccess(pageInfo);
+    }
+
+    /**
+     * 分页查询订单列表 根据订单状态 仅限前台
+     */
+    @Override
+    public ServerResponse list2(Integer userId,Integer pageNum,Integer pageSize,Integer orderStatus) {
+
+        //step1:查询自己的订单
+        List<Order> orderList = Lists.newArrayList();
+        Page page = PageHelper.startPage(pageNum,pageSize);
+        orderList = orderMapper.findOrderByUseridAndOrderstatus(userId,orderStatus);
+
+        //step2:判断订单列表
         if(orderList==null||orderList.size()==0){
             return  ServerResponse.createServerResponseByFail("未查询到订单");
         }
@@ -580,9 +610,9 @@ public class OrderServiceImpl implements IOrderService{
                 .setUndiscountableAmount(undiscountableAmount).setSellerId(sellerId).setBody(body)
                 .setOperatorId(operatorId).setStoreId(storeId).setExtendParams(extendParams)
                 //改为真实服务器
-                .setTimeoutExpress(timeoutExpress).setNotifyUrl("http://47.98.37.35:8888/order/callback.do")//支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置
+//               .setTimeoutExpress(timeoutExpress).setNotifyUrl("http://47.98.37.35:8888/order/callback.do")//支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置
                 //使用内网穿透
-                // .setTimeoutExpress(timeoutExpress).setNotifyUrl("http://ht4arv.natappfree.cc/order/callback.do")//支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置
+                 .setTimeoutExpress(timeoutExpress).setNotifyUrl("http://gdyfu4.natappfree.cc/order/callback.do")//支付宝服务器主动通知商户服务器里指定的页面http路径,根据需要设置
                 .setGoodsDetailList(goodsDetailList);
 
         AlipayF2FPrecreateResult result = tradeService.tradePrecreate(builder);
@@ -596,7 +626,9 @@ public class OrderServiceImpl implements IOrderService{
                 System.out.println(response);
 
                 // 需要修改为运行机器上的路径
-                String filePath = String.format("/neuedu/qrcode/qr-%s.png",
+//                String filePath = String.format("/neuedu/qrcode/qr-%s.png",
+//                    response.getOutTradeNo());
+                String filePath = String.format("F:/qrcode/qr-%s.png",
                         response.getOutTradeNo());
                 log.info("filePath:" + filePath);
                 //引入谷歌的二维码

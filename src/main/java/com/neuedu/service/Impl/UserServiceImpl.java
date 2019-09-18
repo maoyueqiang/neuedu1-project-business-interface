@@ -10,7 +10,6 @@ import com.neuedu.utils.TokenCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -96,6 +95,7 @@ public class UserServiceImpl implements IUserService{
         //注册
         userInfo.setRole(Const.RoleEnum.ROLE_CUSTOMER.getCode());
         userInfo.setPassword(MD5Utils.getMD5Code(userInfo.getPassword()));
+        userInfo.setImage("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=310329945,3969783838&fm=26&gp=0.jpg");
         count = userInfoMapper.insert(userInfo);
         if(count==0){
             return ServerResponse.createServerResponseByFail("注册失败");

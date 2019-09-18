@@ -53,6 +53,10 @@ public interface OrderMapper {
     //根据用户id查询订单
     List<Order> findOrderByUserid(Integer userId);
 
+    //根据用户id和订单状态查询订单
+    List<Order> findOrderByUseridAndOrderstatus(@Param("userId") Integer userId,
+                                                @Param("orderStatus") Integer orderStatus);
+
     //根据订单号查询订单
     Order findOrderByOrderno(Long orderNo);
 

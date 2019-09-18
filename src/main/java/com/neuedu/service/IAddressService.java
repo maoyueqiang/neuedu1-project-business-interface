@@ -28,4 +28,9 @@ public interface IAddressService {
      * 查看收货地址列表  分页
      */
     ServerResponse selectAll(Integer pageNum,Integer pageSize);
+
+    /**
+     * 查看某人的收货地址列表  分页
+     */
+    ServerResponse selectAllByUserId(Integer userId,Integer pageNum,Integer pageSize);
 }

@@ -58,7 +58,7 @@ public class OrderController {
     }
 
     /**
-     * 分页查询订单列表
+     * 分页查询全部订单列表
      */
     @RequestMapping("list.do")
     public ServerResponse list(HttpSession session,
@@ -68,6 +68,20 @@ public class OrderController {
 
 
         return orderService.list(userInfo.getId(),pageNum,pageSize);
+    }
+
+    /**
+     * 分页查询各种订单列表 根据订单状态 仅限前台
+     */
+    @RequestMapping("list2.do")
+    public ServerResponse list2(HttpSession session,
+                               @RequestParam(required = false,defaultValue = "1") Integer pageNum,
+                               @RequestParam(required = false,defaultValue = "10") Integer pageSize,
+                                Integer orderStatus){
+        UserInfo userInfo = (UserInfo) session.getAttribute(Const.CUTTENTUSER);
+
+
+        return orderService.list2(userInfo.getId(),pageNum,pageSize,orderStatus);
     }
 
     /**

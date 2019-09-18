@@ -22,9 +22,14 @@ public interface IOrderService {
     ServerResponse get_order_cart_product(Integer userId);
 
     /**
-     * 分页查询订单列表
+     * 分页查询全部订单列表
      */
     ServerResponse list(Integer userId,Integer pageNum,Integer pageSize);
+
+    /**
+     * 分页查询订单列表 根据订单状态 仅限前台
+     */
+    ServerResponse list2(Integer userId,Integer pageNum,Integer pageSize,Integer orderStatus);
 
     /**
      * 查询订单的详细信息

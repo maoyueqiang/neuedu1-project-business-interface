@@ -29,8 +29,11 @@ public class CartServiceImpl implements ICartService {
     //向购物车中添加商品
     public ServerResponse add(Integer userId,Integer productId, Integer count) {
         //参数非空校验
-        if(productId==null||count==null){
-            return ServerResponse.createServerResponseByFail("参数不能为空");
+        if(productId==null){
+            return ServerResponse.createServerResponseByFail("商品id不能为空");
+        }
+        if(count==null){
+            return ServerResponse.createServerResponseByFail("商品数量不能为空");
         }
 
         Product product = productMapper.selectByPrimaryKey(productId);

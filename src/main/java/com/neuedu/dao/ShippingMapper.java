@@ -53,4 +53,6 @@ public interface ShippingMapper {
                                     @Param("shippingId") Integer shippingId);
 
     int updateBySelectiveKey(Shipping shipping);
+
+    List<Shipping> selectAllByUserId(Integer userId);
 }

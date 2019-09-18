@@ -81,5 +81,19 @@ public class AddressController {
         return addressService.selectAll(pageNum,pageSize);
     }
 
+    /**
+     * 查看某人的收货地址列表 分页
+     */
+    @RequestMapping("selectAllByUserId.do")
+    public ServerResponse selectAllByUserId(HttpSession session,
+                                    @RequestParam(required = false,defaultValue = "1")Integer pageNum,
+                                    @RequestParam(required = false,defaultValue = "10")Integer pageSize){
+
+        UserInfo userInfo =(UserInfo) session.getAttribute(Const.CUTTENTUSER);
+
+
+        return addressService.selectAllByUserId(userInfo.getId(),pageNum,pageSize);
+    }
+
 
 }

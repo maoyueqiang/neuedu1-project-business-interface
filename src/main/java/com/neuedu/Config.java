@@ -14,7 +14,8 @@ public class Config extends WebMvcConfigurerAdapter {
          *这是图片的物理路径  "file:/+本地图片的地址"
          * @Date： Create in 14:08 2017/12/20
          */
-        registry.addResourceHandler("/upload/**").addResourceLocations("file:/neuedu/qrcode/");
+//        registry.addResourceHandler("/upload/**").addResourceLocations("file:/neuedu/qrcode/");
+        registry.addResourceHandler("/upload/**").addResourceLocations("file:/F:/qrcode/");
         super.addResourceHandlers(registry);
     }
 }

@@ -106,4 +106,14 @@ public class AddressServiceImpl implements IAddressService{
         PageInfo pageInfo = new PageInfo(page);
         return ServerResponse.createServerResponseBySuccess(pageInfo);
     }
+
+    @Override
+    //查看某人的收货地址列表  分页
+    public ServerResponse selectAllByUserId(Integer userId,Integer pageNum,Integer pageSize) {
+        Page page= PageHelper.startPage(pageNum,pageSize);
+        //查看地址列表
+        List<Shipping> shippingList = shippingMapper.selectAllByUserId(userId);
+        PageInfo pageInfo = new PageInfo(page);
+        return ServerResponse.createServerResponseBySuccess(pageInfo);
+    }
 }
