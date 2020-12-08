@@ -54,7 +54,7 @@ public class OrderServiceImpl implements IOrderService{
     @Autowired
     OrderItemMapper orderItemMapper;
     @Autowired
-    UserInfoMapper userInfoMapper;
+    UserinfoMapper userInfoMapper;
     @Autowired
     PayInfoMapper payInfoMapper;
 
@@ -183,35 +183,36 @@ public class OrderServiceImpl implements IOrderService{
     @Override
     public ServerResponse list(Integer userId,Integer pageNum,Integer pageSize) {
 
-        //step1:判断用户权限
-        UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userId);
-        List<Order> orderList = Lists.newArrayList();
-        Page page = PageHelper.startPage(pageNum,pageSize);
-        if(userInfo.getRole()==Const.RoleEnum.ROLE_ADMIN.getCode()){
-            //查询所有订单
-            orderList = orderMapper.selectAll();
-        }
-        else{
-            //查询自己的订单
-            orderList = orderMapper.findOrderByUserid(userId);
-        }
-        //step2:查询订单列表
-        if(orderList==null||orderList.size()==0){
-            return  ServerResponse.createServerResponseByFail("未查询到订单");
-        }
-
-        //step3:转换为OrderVO
-        List<OrderVO> orderVOList = Lists.newArrayList();
-        for(Order order:orderList){
-            List<OrderItem> orderItemList = orderItemMapper.findOrderItemsByOrderno(order.getOrderNo());
-            OrderVO orderVO = assmbleOrderVO(order,orderItemList,order.getShippingId());
-            orderVOList.add(orderVO);
-        }
-
-        //step3:返回结果
-        PageInfo pageInfo = new PageInfo(page);
-        pageInfo.setList(orderVOList);
-        return ServerResponse.createServerResponseBySuccess(pageInfo);
+//        //step1:判断用户权限
+//        UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userId);
+//        List<Order> orderList = Lists.newArrayList();
+//        Page page = PageHelper.startPage(pageNum,pageSize);
+//        if(userInfo.getRole()==Const.RoleEnum.ROLE_ADMIN.getCode()){
+//            //查询所有订单
+//            orderList = orderMapper.selectAll();
+//        }
+//        else{
+//            //查询自己的订单
+//            orderList = orderMapper.findOrderByUserid(userId);
+//        }
+//        //step2:查询订单列表
+//        if(orderList==null||orderList.size()==0){
+//            return  ServerResponse.createServerResponseByFail("未查询到订单");
+//        }
+//
+//        //step3:转换为OrderVO
+//        List<OrderVO> orderVOList = Lists.newArrayList();
+//        for(Order order:orderList){
+//            List<OrderItem> orderItemList = orderItemMapper.findOrderItemsByOrderno(order.getOrderNo());
+//            OrderVO orderVO = assmbleOrderVO(order,orderItemList,order.getShippingId());
+//            orderVOList.add(orderVO);
+//        }
+//
+//        //step3:返回结果
+//        PageInfo pageInfo = new PageInfo(page);
+//        pageInfo.setList(orderVOList);
+//        return ServerResponse.createServerResponseBySuccess(pageInfo);
+        return null;
     }
 
     /**
